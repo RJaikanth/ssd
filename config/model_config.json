@@ -1,0 +1,5 @@
+{
+    "n_classes": 21,
+    "device": "cuda",
+    "checkpoint": null
+}

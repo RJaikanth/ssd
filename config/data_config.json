@@ -1,0 +1,6 @@
+{
+    "voc07": "/home/raghhuveerj/code/data/pascal_VOC/VOCdevkit/VOC2007",
+    "voc12": "/home/raghhuveerj/code/data/pascal_VOC/VOCdevkit/VOC2012",
+    "lists_folder": "/home/raghhuveerj/code/projects/object_detection/ssd/data/",
+    "keep_difficult": true
+}

@@ -1,0 +1,24 @@
+Architecture - 
+    - Base Model
+    - Several MultiScale Feature Blocks connected in a series    
+
+Base Model - 
+    - Modified VGG16 Model 
+    - We do not use the FC layers from the VGG model. 
+      Instead we use 2 conv layers that capture the feature maps of the model
+    - We use the activated output from conv4_3 and conv_7 as one of the feature maps
+      to capture the detections. 
+    - After the base model, we will use MultiScale Feature Blocks to extract more 
+      detections at different image sizes. 
+
+
+MultiScale Feature Blocks - 
+    - Nothing but a collection of 8 additional convolution layers in 4 blocks.
+    - We collect the activated outputs from the 2nd layer of each block to add to the detections
+    - These layers decrease the size of the feature maps slowly.
+
+
+Why multiple scale feature maps??
+    1. It increases number of detections for each class. (THIS!)
+    2. Easier to detect smaller objects.
+    3. More robust model.

@@ -1,0 +1,23 @@
+1. Multi-scale feature maps for detection -
+    - Convolutional layers at the end of the base network
+    - These layers decrease in size progressively and allow predoctions at multiple scales
+    - Model for predicting detections is different for each feature layer.
+
+2. Convolutional predictors for detection -
+    - Each layer produces a fixed set of predictions using a set of convolutional features
+    - For a feature layer of size (m x n) with p channels, the basic element for predicting
+      parameters of a potential detection is a (3x3xp) smallerkernel that produces either a
+      score for a category, or a shape offset relative to default box coordinates.
+    - At each ofthe (m * n) where the smaller (3x3xp) kernel is applies, it porduces an outout value.
+      The bounding box offset output values are measured relative to a default box position (anchor box)
+      relative to each feature map location.
+
+3. Default boxes and aspect ratios - 
+    - Associate a set of bounding boxes for each feature map cell, for multiple feature maps at the top of the network.
+    - The default boxes tile the feature map in convolutional manner. At each feature map cell, we predict the offsets 
+      relative to the default box shapes in the cell, as well as the per-class scores that indicate the presence of a
+      class instance in each of those boxes.
+    - For each box out of a total k boxes, we compute 'c' class scores and 4 offset positions.
+      This results in (c+4)*k filters that are applied around each location in the feature map.
+      This yields a (c+4)*k*m*n outputs for a m*n feature map.
+    

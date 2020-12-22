@@ -1,0 +1,27 @@
+Matching Strategy (Loss Calculation) - 
+    - For each ground truth box we are selecting from default boxes that vary over location,
+      aspect ratio and scale
+    - Start by matching ground truth box to the default box with the best IoU metric.
+    - Then we match default boxes to any ground truth with IoU > 0.5
+
+
+Loss Function - 
+    - Weighted sum of Confidence Loss (Softmax loss) and Regression Loss (L1Loss)
+
+
+Choosing Scales and aspect ratios for default boxes - 
+    - scale_k = 0.2 + ((0.9 - 0.2)*(k - 1)) / (m - 1)
+    where, 
+        k = [1, m]
+        m = Number of feature maps.
+
+
+    - Aspect Ratios - 
+        ar = [1, 2, 3, (1/2), (1/3)]
+        width = scale_k * sqrt(ar)
+        height = scale_k * sqrt(ar) 
+
+        For aspect ratio of 1 we also add a default box whose scale is 
+        sqrt(scale_k*scale_(k+1))
+
+
